@@ -99,6 +99,7 @@ scripts/
   01_inspect_solution.py    print the .mat tree; run this first
   03_slip.py                slip distribution, rate, moment (fig07-fig09)
   04_megathrust_strain.py   strain and stress tensors (fig01-fig06) + netCDF
+  05_slip_movie.py          slip-rate map animation (mp4/gif) with coastlines
   slab2_to_mesh.py          fallback geometry from a Slab2 grid
 
 docs/

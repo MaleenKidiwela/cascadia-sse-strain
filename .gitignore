@@ -10,6 +10,7 @@ data/*
 !data/cascadia_mesh.txt
 !data/cascadia_mesh_mccrory.txt
 !data/cascadia_casc16_profile.csv
+!data/cascadia_coastline_ne10m.json
 
 # real results: the netCDF exceeds GitHub's 100 MB limit; figures are kept
 out/*.nc
@@ -18,3 +19,5 @@ out/*.pid
 
 # synthetic fixture output is regenerable (make synthetic)
 synthetic/
+out/*.mp4
+out/*.gif
