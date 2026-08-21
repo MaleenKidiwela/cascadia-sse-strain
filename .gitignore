@@ -1,0 +1,20 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.venv/
+.DS_Store
+
+# downloaded inputs: large, refetchable (00_fetch_solution.sh, ScienceBase, CFM)
+data/*
+# ...but keep the small derived artifacts the results depend on
+!data/cascadia_mesh.txt
+!data/cascadia_mesh_mccrory.txt
+!data/cascadia_casc16_profile.csv
+
+# real results: the netCDF exceeds GitHub's 100 MB limit; figures are kept
+out/*.nc
+out/*.log
+out/*.pid
+
+# synthetic fixture output is regenerable (make synthetic)
+synthetic/

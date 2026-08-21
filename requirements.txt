@@ -1,0 +1,10 @@
+# Tested versions (see docs/INSTALL.md). pyproject.toml pins only lower bounds;
+# this file records what the 27 tests were actually run against.
+numpy==2.4.4
+scipy==1.17.1
+xarray==2026.7.0
+netCDF4==1.7.4
+h5py==3.16.0
+matplotlib==3.10.8
+cutde==26.3.6
+pytest==8.*
