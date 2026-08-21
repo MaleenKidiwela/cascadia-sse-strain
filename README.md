@@ -25,7 +25,7 @@ never overwrite real results.
 git clone <this>  &&  cd cascadia-sse-strain
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
-pytest -q                       # 27 tests, ~2 s
+pytest -q                       # 32 tests, ~2 s
 ```
 
 Full instructions, including conda and GPU backends for `cutde`, are in
@@ -149,16 +149,36 @@ panels follow a fixed interface depth contour instead.
 
 ## Standing flags
 
-- The elastic model is `ElasticModel.placeholder_cascadia()` and the output
-  carries `elastic_is_placeholder = 1`. Substitute Stephenson (2007) or the
-  CRESCENT community velocity model before anything quantitative.
-- The Brocher (2005) coefficients in `elastic.py` were transcribed from the
-  standard published forms and have not been checked against the paper.
+- The mesh is rebuilt from Slab2, not Gualandi's own fault file, so the
+  inversion is not an exact reproduction of his. A matched-resolution
+  McCrory (2012) mesh (`data/cascadia_mesh_mccrory.txt`) agrees to ~1% in
+  misfit and ~0.01 in episode Mw, so the geometry choice is second-order —
+  but slip near the mesh edges is an artefact, and his mesh (one email)
+  remains the clean fix.
+- The default elastic model is still the flagged placeholder; the committed
+  run in `out/` instead used `--elastic-csv data/cascadia_casc16_profile.csv`,
+  a median forearc profile from casc1.6 (Stephenson et al., 2017, via the
+  CRESCENT CVM), and carries `elastic_is_placeholder = 0`.
+- The Brocher (2005) coefficients were verified against two independent
+  secondary sources (see `elastic.py`); the original BSSA paper itself has
+  not been checked.
 - `geodesy.polyconic` reproduces an eccentricity term that looks like a
   transcription slip in the original code. It is kept for fidelity, with the
   textbook form available behind `strict_ellipsoid=True`.
 - Slip is relative to the long-term trend; interseismic loading is absent by
-  construction. `fitresult.mat` may contain it. See DATA_SOURCES.md.
+  construction. `fitresult.mat` holds per-station rate terms
+  (`mu_east/north/vertical`) but the full trajectory fits are MATLAB opaque
+  objects, unreadable outside MATLAB. See DATA_SOURCES.md.
+
+## The committed run
+
+`out/` holds figures from the 2026-08-18 solution: slip reconstructions
+whose five largest northern episodes come out at Mw 6.6-6.8 with 1-2 cm of
+slip over 2-5 weeks, matching documented ETS events (Aug 2011, Sep 2012,
+Sep 2013, ...), and strain/stress fields peaking at ~1.6e-7 max shear and
+kPa-scale stress (pressure ~7 kPa, von Mises ~19 kPa, Coulomb ~6 kPa). The
+netCDF (117 MB) is gitignored; regenerate it with the commands above after
+`./scripts/00_fetch_solution.sh`.
 
 ## Citing
 

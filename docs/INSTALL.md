@@ -15,7 +15,7 @@ Python 3.10 or newer. The package was developed and tested on:
 | matplotlib | 3.10.8 | figures |
 | cutde | 26.3.6 | Nikkhoo & Walter (2015) triangular dislocation kernels |
 
-Lower versions will probably work; these are what the 27 tests were run
+Lower versions will probably work; these are what the 32 tests were run
 against. `pyproject.toml` pins only lower bounds.
 
 ---
